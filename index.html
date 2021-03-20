@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/17/BUUwarmup/">
+    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/20/BUUWarmUp1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/03/17/BUUwarmup/" class="post-title-link" itemprop="url">BUUwarmup</a>
+            <a href="/2021/03/20/BUUWarmUp1/" class="post-title-link" itemprop="url">BUUWarmUp1</a>
         </h2>
 
         <div class="post-meta">
@@ -168,8 +168,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-03-17 14:26:25" itemprop="dateCreated datePublished" datetime="2021-03-17T14:26:25+08:00">2021-03-17</time>
+              <time title="Created: 2021-03-20 17:21:38 / Modified: 17:22:09" itemprop="dateCreated datePublished" datetime="2021-03-20T17:21:38+08:00">2021-03-20</time>
             </span>
 
           
@@ -183,135 +184,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
+          <p>拿到题目，是一个滑稽的表情</p>
+<p>F12，发现有个source.php</p>
+<p>访问之后，回显出一段php<br> &lt;?php<br>    highlight_file(__FILE__);<br>    class emmm<br>    {<br>        public static function checkFile(&amp;$page)<br>        {<br>            $whitelist = [“source”=&gt;”source.php”,”hint”=&gt;”hint.php”];<br>            if (! isset($page) || !is_string($page)) {<br>                echo “you can’t see it”;<br>                return false;<br>            }</p>
+<pre><code>        if (in_array($page, $whitelist)) &#123;
+            return true;
+        &#125;
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+        $_page = mb_substr(
+            $page,
+            0,
+            mb_strpos($page . &#39;?&#39;, &#39;?&#39;)
+        );
+        if (in_array($_page, $whitelist)) &#123;
+            return true;
+        &#125;
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/01/09/hello/">
+        $_page = urldecode($page);
+        $_page = mb_substr(
+            $_page,
+            0,
+            mb_strpos($_page . &#39;?&#39;, &#39;?&#39;)
+        );
+        if (in_array($_page, $whitelist)) &#123;
+            return true;
+        &#125;
+        echo &quot;you can&#39;t see it&quot;;
+        return false;
+    &#125;
+&#125;
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Oops!">
-      <meta itemprop="description" content="">
-    </span>
+if (! empty($_REQUEST[&#39;file&#39;])
+    &amp;&amp; is_string($_REQUEST[&#39;file&#39;])
+    &amp;&amp; emmm::checkFile($_REQUEST[&#39;file&#39;])
+) &#123;
+    include $_REQUEST[&#39;file&#39;];
+    exit;
+&#125; else &#123;
+    echo &quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;;
+&#125;  </code></pre>
+<p>?&gt;</p>
+<p>发现有个hint.php，进去看一看，发现一句话：<br><code>flag not here, and flag in ffffllllaaaagggg</code><br>猜测flag应该在ffffllllaaaagggg里面<br>通过百度看别人的wp知道，这题是白名单验证<br>这道题定义了一个checkfile()函数</p>
+<p>大致的功能如下:<br>1.定义了一个白名单：source.php和hint.php，接着判断$page是否为空，是否为字符串。<br>2.判断$page是否在白名单里，若在，则返回true<br>3.$_page是取出$page里面？前面的东西，然后再判断$_page是否在白名单里，若在，则返回true<br>4.如果上一步判断失败，则又考虑了url编码的问题，因为url在传入以后服务器会自动进行一次解码。因此传入二次编码后的内容，就可以使checkfile返回true。</p>
+<p>这里涉及到了两个php函数：substr()和strpos()</p>
+<p>1.substr()函数返回字符串的一部分。<br>使用规则如下：<br>substr(string,start,length)<br>string：必需。规定要返回其中一部分的字符串。<br>start：必需。规定在字符串的何处开始。<br>       正数 - 在字符串的指定位置开始<br>       负数 - 在从字符串结尾的指定位置开始<br>       0 - 在字符串中的第一个字符处开始<br>length：可选。规定要返回的字符串长度。默认是直到字符串的结尾。<br>        正数 - 从 start 参数所在的位置返回<br>        负数 - 从字符串末端返回</p>
+<p>2.strpos()函数查找字符串在另一字符串中第一次出现的位置（区分大小写）<br>使用规则如下：<br>strpos(string,find,start)<br>string：必需。规定被搜索的字符串。<br>find:必需。规定要查找的字符。<br>start:可选。规定开始搜索的位置。</p>
+<p>分析完代码之后就可以构造payload了，传递参数?file=source.php?/../../../../ffffllllaaaagggg,目录穿越，同时还要把？进行两次url编码，最后的payload为？file=source.php%253f/../../../../../../ffffllllaaaagggg。但是这里我自己试的是编码前和编码后的url都可以得到flag。然后这里的/../../../貌似是目录的跳转，前三次都没有试出来，到了第四次才出flag，这里我也没太搞清楚为什么要进行目录跳转。</p>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wzc">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/09/hello/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-09 15:40:21" itemprop="dateCreated datePublished" datetime="2021-01-09T15:40:21+08:00">2021-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-20 16:29:20" itemprop="dateModified" datetime="2021-03-20T16:29:20+08:00">2021-03-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/01/09/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Oops!">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wzc">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/09/hello-world/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-09 15:11:15" itemprop="dateCreated datePublished" datetime="2021-01-09T15:11:15+08:00">2021-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-03-20 15:32:07" itemprop="dateModified" datetime="2021-03-20T15:32:07+08:00">2021-03-20</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
       
     </div>
 
@@ -392,7 +311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
