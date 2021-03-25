@@ -28,7 +28,7 @@
 <meta property="og:description" content="拿到题目，发现有个tips 点击tips，出来一句话：Can you find out the flag? 根据本体的名字include以及url中的&#x2F;?file&#x3D;flag.php就能够知道这是一题文件包含题了。 用php伪协议读取flag.php的内容 php:&#x2F;&#x2F;filter 伪协议该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。 payload">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-03-25T06:06:31.000Z">
-<meta property="article:modified_time" content="2021-03-25T06:13:11.453Z">
+<meta property="article:modified_time" content="2021-03-25T06:40:20.983Z">
 <meta property="article:author" content="Oops!">
 <meta name="twitter:card" content="summary">
 
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:13:11" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
+              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:40:20" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
             </span>
 
           
@@ -198,6 +198,9 @@
 <p>PD9waHAKZWNobyAiQ2FuIHlvdSBmaW5kIG91dCB0aGUgZmxhZz8iOwovL2ZsYWd7YjQ4NzQzYmQtMDFhZi00ZTVkLWFiYTgtN2E0Yjc2NGEwMWE3fQo=</p>
 <p>解码之后得到：<br>&lt;?php<br>echo “Can you find out the flag?”;<br>//flag{b48743bd-01af-4e5d-aba8-7a4b764a01a7}</p>
 <p>成功得到flag</p>
+<p>最后补充一点php://filter伪协议的用法：</p>
+<p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）</p>
+<p>2.php://input + [POST DATA]执行php代码</p>
 
     </div>
 

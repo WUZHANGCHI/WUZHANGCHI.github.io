@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:13:11" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
+              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:40:20" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
             </span>
 
           
@@ -194,6 +194,9 @@
 <p>PD9waHAKZWNobyAiQ2FuIHlvdSBmaW5kIG91dCB0aGUgZmxhZz8iOwovL2ZsYWd7YjQ4NzQzYmQtMDFhZi00ZTVkLWFiYTgtN2E0Yjc2NGEwMWE3fQo=</p>
 <p>解码之后得到：<br>&lt;?php<br>echo “Can you find out the flag?”;<br>//flag{b48743bd-01af-4e5d-aba8-7a4b764a01a7}</p>
 <p>成功得到flag</p>
+<p>最后补充一点php://filter伪协议的用法：</p>
+<p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）</p>
+<p>2.php://input + [POST DATA]执行php代码</p>
 
       
     </div>
