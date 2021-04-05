@@ -20,19 +20,15 @@
     var CONFIG = {"hostname":"wuzhangchi.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="拿到题目，发现有个tips 点击tips，出来一句话：Can you find out the flag? 根据本体的名字include以及url中的&#x2F;?file&#x3D;flag.php就能够知道这是一题文件包含题了。 用php伪协议读取flag.php的内容 php:&#x2F;&#x2F;filter 伪协议该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。 payload">
-<meta property="og:type" content="article">
-<meta property="og:title" content="BUUinclude1">
-<meta property="og:url" content="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="wzc">
+<meta property="og:url" content="https://wuzhangchi.github.io/archives/2021/04/index.html">
 <meta property="og:site_name" content="wzc">
-<meta property="og:description" content="拿到题目，发现有个tips 点击tips，出来一句话：Can you find out the flag? 根据本体的名字include以及url中的&#x2F;?file&#x3D;flag.php就能够知道这是一题文件包含题了。 用php伪协议读取flag.php的内容 php:&#x2F;&#x2F;filter 伪协议该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。 payload">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-03-25T06:06:31.000Z">
-<meta property="article:modified_time" content="2021-03-25T06:40:20.983Z">
 <meta property="article:author" content="Oops!">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/">
+<link rel="canonical" href="https://wuzhangchi.github.io/archives/2021/04/">
 
 
 <script id="page-configurations">
@@ -40,12 +36,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>BUUinclude1 | wzc</title>
+  <title>Archive | wzc</title>
   
 
 
@@ -143,92 +139,50 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content archive">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://wuzhangchi.github.io/2021/03/25/BUUinclude1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Oops!">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wzc">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          BUUinclude1
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-03-25 14:06:31 / Modified: 14:40:20" itemprop="dateCreated datePublished" datetime="2021-03-25T14:06:31+08:00">2021-03-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">Um..! 7 posts in total. Keep on posting.</span>
+      </div>
 
       
-        <p>拿到题目，发现有个tips</p>
-<p>点击tips，出来一句话：Can you find out the flag?</p>
-<p>根据本体的名字include以及url中的/?file=flag.php就能够知道这是一题文件包含题了。</p>
-<p>用php伪协议读取flag.php的内容</p>
-<p>php://filter 伪协议<br>该伪协议读取源代码并进行base64编码输出，不然会直接当做php代码执行就看不到源代码内容了。</p>
-<p>payload为：file=php://filter/read=convert.base64-encode/resource=flag.php</p>
-<p>出来一段base64编码：</p>
-<p>PD9waHAKZWNobyAiQ2FuIHlvdSBmaW5kIG91dCB0aGUgZmxhZz8iOwovL2ZsYWd7YjQ4NzQzYmQtMDFhZi00ZTVkLWFiYTgtN2E0Yjc2NGEwMWE3fQo=</p>
-<p>解码之后得到：<br>&lt;?php<br>echo “Can you find out the flag?”;<br>//flag{b48743bd-01af-4e5d-aba8-7a4b764a01a7}</p>
-<p>成功得到flag</p>
-<p>最后补充一点php://filter伪协议的用法：</p>
-<p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）</p>
-<p>2.php://input + [POST DATA]执行php代码</p>
-
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2021-04-01T21:48:39+08:00"
+              content="2021-04-01">
+          04-01
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/04/01/BUUpingpingping%E4%BB%A5%E5%8F%8A%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/" itemprop="url">
+            <span itemprop="name">BUUpingpingping以及命令执行相关知识</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/03/20/BUUWarmUp1/" rel="prev" title="BUUWarmUp1">
-      <i class="fa fa-chevron-left"></i> BUUWarmUp1
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/03/25/BUUSecretFile/" rel="next" title="BUUSecretFile">
-      BUUSecretFile <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
